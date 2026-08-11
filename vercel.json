@@ -1,5 +1,5 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build && node -e \"const fs=require('node:fs'); for (const f of ['site.css','scroll-reveal.js','favicon.svg']) fs.copyFileSync('public/'+f,'static/'+f)\"",
   "outputDirectory": "static"
 }
