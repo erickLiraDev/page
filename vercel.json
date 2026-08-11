@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "node -e \"console.log('Static frontend')\"",
+  "outputDirectory": "static",
+  "cleanUrls": true
+}

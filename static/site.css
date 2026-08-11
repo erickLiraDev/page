@@ -50,7 +50,7 @@ a:focus-visible {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--paper);
   animation: loading-screen-exit 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -63,29 +63,15 @@ a:focus-visible {
   animation: loading-brand-cycle 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.loading-monogram {
-  display: grid;
-  width: clamp(4rem, 9vw, 6.5rem);
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.58);
-  border-radius: 1.25rem;
-  color: var(--accent);
-  font-size: clamp(1rem, 2.5vw, 1.55rem);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.loading-name {
-  color: var(--paper);
-  font-size: clamp(1.15rem, 3vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
+.loading-logo {
+  display: block;
+  width: min(78vw, 26rem);
+  height: auto;
 }
 
 .hero-ring,
 .hero-block,
-.hero h1,
+.hero-content,
 .section-header,
 .presentation-card,
 .social-footer {
@@ -95,7 +81,7 @@ a:focus-visible {
 
 html.reveal-ready .hero-ring,
 html.reveal-ready .hero-block,
-html.reveal-ready .hero h1,
+html.reveal-ready .hero-content,
 html.reveal-ready .section-header,
 html.reveal-ready .presentation-card,
 html.reveal-ready .social-footer {
@@ -106,7 +92,7 @@ html.reveal-ready .social-footer {
 
 html.reveal-ready .snap-section.is-revealed .hero-ring,
 html.reveal-ready .snap-section.is-revealed .hero-block,
-html.reveal-ready .snap-section.is-revealed.hero h1,
+html.reveal-ready .snap-section.is-revealed .hero-content,
 html.reveal-ready .snap-section.is-revealed .section-header,
 html.reveal-ready .snap-section.is-revealed .presentation-card,
 html.reveal-ready .snap-section.is-revealed .social-footer {
@@ -117,7 +103,7 @@ html.reveal-ready .snap-section.is-revealed .hero-ring {
   animation-delay: 0s;
 }
 
-html.reveal-ready .snap-section.is-revealed.hero h1 {
+html.reveal-ready .snap-section.is-revealed .hero-content {
   animation-delay: 0.1s;
 }
 
@@ -222,9 +208,38 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   background: var(--paper);
 }
 
-.hero h1 {
+.hero-brand {
+  position: absolute;
+  top: clamp(1.25rem, 3.5vw, 3rem);
+  left: clamp(1rem, 3.5vw, 3.75rem);
+  z-index: 3;
+  display: block;
+  width: min(34vw, 18rem);
+}
+
+.hero-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 180ms ease;
+}
+
+.hero-brand:hover .hero-logo {
+  transform: scale(1.02);
+}
+
+.hero-content {
   position: relative;
   z-index: 2;
+  display: flex;
+  width: min(90vw, 78rem);
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero h1 {
+  position: relative;
   max-width: min(90vw, 1320px);
   margin: 0;
   color: var(--ink);
@@ -234,6 +249,49 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   line-height: 0.88;
   text-align: center;
   text-wrap: balance;
+}
+
+.hero-meta {
+  margin: clamp(1.1rem, 2.2vw, 2rem) 0 0;
+  color: var(--blue);
+  font-size: clamp(0.68rem, 1vw, 0.86rem);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: clamp(1rem, 2vw, 1.6rem);
+  padding: 0.8rem 1rem 0.8rem 1.15rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.hero-cta:hover {
+  border-color: var(--blue);
+  background: var(--blue);
+  transform: translateY(-2px);
+}
+
+.hero-cta-icon,
+.team-button-icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
 }
 
 .hero-ring {
@@ -469,15 +527,11 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 }
 
 .team-button:disabled {
-  color: var(--muted);
+  border-style: dashed;
+  background: transparent;
+  color: var(--ink-soft);
   cursor: not-allowed;
-  opacity: 0.72;
-}
-
-.team-button-icon,
-.social-link-arrow {
-  font-size: 1rem;
-  line-height: 0.8;
+  opacity: 1;
 }
 
 .social-footer {
@@ -549,35 +603,10 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   color: var(--accent);
 }
 
-.brand-monogram {
-  display: grid;
-  width: 2.35rem;
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.52);
-  border-radius: 0.8rem;
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-}
-
-.brand-copy {
-  display: flex;
-  flex-direction: column;
-  gap: 0.17rem;
-}
-
 .brand-copy strong {
+  color: var(--paper);
   font-size: 0.78rem;
   letter-spacing: -0.02em;
-}
-
-.brand-copy small {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.5rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 .social-content {
@@ -670,25 +699,36 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 }
 
 @media (max-width: 900px) {
+  .site-shell {
+    scroll-snap-type: y proximity;
+  }
+
+  .snap-section {
+    height: auto;
+    min-height: 100svh;
+    scroll-snap-stop: normal;
+  }
+
   .program-section {
-    overflow-y: auto;
+    overflow: visible;
   }
 
   .program-grid {
     height: auto;
     min-height: 100%;
-    grid-template-rows: minmax(80svh, auto) minmax(20svh, auto);
+    grid-template-rows: auto auto;
   }
 
   .agenda-column {
-    min-height: 80svh;
+    min-height: 0;
     padding: 1.25rem;
   }
 
   .presentation-list {
     flex: none;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(12rem, auto);
   }
 
   .social-footer {
@@ -710,6 +750,12 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 }
 
 @media (max-width: 620px) {
+  .hero-brand {
+    top: 1.25rem;
+    left: 1rem;
+    width: min(54vw, 13rem);
+  }
+
   .hero h1 {
     max-width: 92vw;
     font-size: clamp(3.5rem, 17vw, 6.5rem);
@@ -754,6 +800,11 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 
   .presentation-copy h3 {
     font-size: 0.82rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
   }
 
   .presentation-topic {
@@ -761,14 +812,15 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   }
 
   .team-button {
-    width: 4.5rem;
-    min-width: 4.5rem;
-    min-height: 4.5rem;
-    padding: 0;
+    width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    padding: 0.7rem 0.75rem;
+    font-size: 0.72rem;
   }
 
   .team-button-label {
-    display: none;
+    display: inline;
   }
 
   .social-footer {
@@ -795,7 +847,8 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 @media (max-width: 390px) {
   .presentation-list {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, minmax(7rem, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(8rem, auto);
   }
 
   .presentation-card {
@@ -820,7 +873,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   .loading-brand,
   .hero-ring,
   .hero-block,
-  .hero h1,
+  .hero-content,
   .section-header,
   .presentation-card,
   .social-footer {
