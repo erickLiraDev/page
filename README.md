@@ -8,7 +8,7 @@ Frontend estático da Semana da Embalagem, evento da Falcão Bauer.
 - `static/site.css`: estilos responsivos
 - `static/scroll-reveal.js`: animações de entrada
 - `static/logo-falcao-bauer.png`: logo oficial
-- `static/favicon.svg`: ícone do site
+- `static/favicon.png`: ícone do site
 
 O projeto não possui banco de dados, API, Worker ou dependências de servidor.
 
