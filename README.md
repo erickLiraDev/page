@@ -16,3 +16,5 @@ O projeto não possui banco de dados, API, Worker ou dependências de servidor.
 
 O site é publicado na Vercel como conteúdo estático. O arquivo `vercel.json`
 define a pasta `static` como diretório público.
+
+A produção acompanha a branch `main` deste repositório.
