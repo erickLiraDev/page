@@ -19,6 +19,7 @@ html {
   min-height: 100%;
   background: var(--canvas);
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -32,11 +33,13 @@ body {
   line-height: 1.4;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button,
 a {
   font: inherit;
+  touch-action: manipulation;
 }
 
 button:focus-visible,
@@ -212,8 +215,8 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 
 .hero-brand {
   position: absolute;
-  top: clamp(1.25rem, 3.5vw, 3rem);
-  left: clamp(1rem, 3.5vw, 3.75rem);
+  top: max(clamp(1.25rem, 3.5vw, 3rem), env(safe-area-inset-top));
+  left: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-left));
   z-index: 3;
   display: block;
   width: min(34vw, 18rem);
@@ -267,6 +270,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
+  min-height: 44px;
   margin-top: clamp(1rem, 2vw, 1.6rem);
   padding: 0.8rem 1rem 0.8rem 1.15rem;
   border: 1px solid var(--ink);
@@ -353,7 +357,10 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   min-width: 0;
   min-height: 0;
   flex-direction: column;
-  padding: clamp(1rem, 2.7vw, 2.5rem) clamp(1rem, 3.5vw, 3.75rem) clamp(0.85rem, 2vw, 1.75rem);
+  padding-top: clamp(1rem, 2.7vw, 2.5rem);
+  padding-right: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-right));
+  padding-bottom: clamp(0.85rem, 2vw, 1.75rem);
+  padding-left: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-left));
 }
 
 .section-header {
@@ -549,7 +556,10 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  padding: clamp(0.7rem, 1.6vw, 1.5rem) clamp(1rem, 3.5vw, 3.75rem);
+  padding-top: clamp(0.7rem, 1.6vw, 1.5rem);
+  padding-right: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-right));
+  padding-bottom: max(clamp(0.7rem, 1.6vw, 1.5rem), env(safe-area-inset-bottom));
+  padding-left: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-left));
   background: var(--ink);
   color: var(--paper);
 }
@@ -598,6 +608,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 
 .brand-link {
   display: flex;
+  min-height: 44px;
   align-items: center;
   gap: 0.75rem;
   width: fit-content;
@@ -686,6 +697,9 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 }
 
 .contact-phone {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   width: fit-content;
   color: var(--paper);
   font-size: 0.78rem;
@@ -729,7 +743,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 
   .agenda-column {
     min-height: 0;
-    padding: 1.25rem;
+    padding: 1.25rem max(1.25rem, env(safe-area-inset-right)) 1.25rem max(1.25rem, env(safe-area-inset-left));
   }
 
   .presentation-list {
@@ -743,7 +757,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
     min-height: 20svh;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: 1rem;
-    padding: 0.8rem 1.25rem;
+    padding: 0.8rem max(1.25rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
   }
 
   .social-content {
@@ -755,17 +769,26 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-left: 0;
   }
+
+  html.reveal-ready .program-section .section-header,
+  html.reveal-ready .program-section .presentation-card,
+  html.reveal-ready .program-section .social-footer {
+    opacity: 1;
+    translate: none;
+    animation: none;
+    will-change: auto;
+  }
 }
 
 @media (max-width: 620px) {
   .hero-brand {
-    top: 1.25rem;
-    left: 1rem;
+    top: max(1.25rem, env(safe-area-inset-top));
+    left: max(1rem, env(safe-area-inset-left));
     width: min(54vw, 13rem);
   }
 
   .hero h1 {
-    max-width: 92vw;
+    max-width: 100%;
     font-size: clamp(3.25rem, 16vw, 5.5rem);
     line-height: 0.88;
   }
@@ -780,7 +803,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   }
 
   .agenda-column {
-    padding: 1rem;
+    padding: 1rem max(1rem, env(safe-area-inset-right)) 1rem max(1rem, env(safe-area-inset-left));
   }
 
   .section-header h2 {
@@ -834,7 +857,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   .social-footer {
     min-height: 20svh;
     grid-template-columns: 1fr;
-    padding: 0.8rem 1rem;
+    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
     gap: 0.75rem;
   }
 
@@ -852,7 +875,7 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 399px) {
   .presentation-list {
     grid-template-columns: 1fr;
     grid-template-rows: none;
@@ -865,7 +888,37 @@ html.reveal-ready .snap-section.is-revealed .social-footer {
 
   .social-footer {
     min-height: 20svh;
-    padding: 0.8rem 1rem;
+    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-brand {
+    width: min(28vw, 11rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 10vw, 5rem);
+  }
+
+  .hero-meta,
+  .hero-cta {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-cta:active {
+    transform: translateY(1px);
+  }
+
+  .social-link:active {
+    transform: scale(0.97);
+  }
+
+  .brand-link:active .brand-copy strong,
+  .contact-phone:active {
+    color: var(--accent);
   }
 }
 
