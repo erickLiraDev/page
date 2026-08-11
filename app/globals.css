@@ -53,7 +53,7 @@ a:focus-visible {
   place-items: center;
   overflow: hidden;
   background: var(--ink);
-  animation: loading-screen-exit 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: loading-screen-exit 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .loading-brand {
@@ -62,7 +62,7 @@ a:focus-visible {
   gap: clamp(0.85rem, 2vw, 1.25rem);
   opacity: 0;
   transform: translateY(1rem) scale(0.96);
-  animation: loading-brand-cycle 1.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: loading-brand-cycle 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .loading-monogram {
@@ -91,49 +91,68 @@ a:focus-visible {
 .section-header,
 .presentation-card,
 .social-footer {
+  opacity: 1;
+  translate: 0 0;
+}
+
+html.reveal-ready .hero-ring,
+html.reveal-ready .hero-block,
+html.reveal-ready .hero h1,
+html.reveal-ready .section-header,
+html.reveal-ready .presentation-card,
+html.reveal-ready .social-footer {
   opacity: 0;
-  translate: 0 1.25rem;
-  animation: content-reveal 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  translate: clamp(2.5rem, 6vw, 6rem) 0;
+  will-change: opacity, translate;
 }
 
-.hero-ring {
-  animation-delay: 1.05s;
+html.reveal-ready .snap-section.is-revealed .hero-ring,
+html.reveal-ready .snap-section.is-revealed .hero-block,
+html.reveal-ready .snap-section.is-revealed.hero h1,
+html.reveal-ready .snap-section.is-revealed .section-header,
+html.reveal-ready .snap-section.is-revealed .presentation-card,
+html.reveal-ready .snap-section.is-revealed .social-footer {
+  animation: content-reveal 0.68s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.hero h1 {
-  animation-delay: 1.18s;
+html.reveal-ready .snap-section.is-revealed .hero-ring {
+  animation-delay: 0s;
 }
 
-.hero-block {
-  animation-delay: 1.3s;
+html.reveal-ready .snap-section.is-revealed.hero h1 {
+  animation-delay: 0.1s;
 }
 
-.section-header {
-  animation-delay: 1.2s;
+html.reveal-ready .snap-section.is-revealed .hero-block {
+  animation-delay: 0.2s;
 }
 
-.presentation-card:nth-child(1) {
-  animation-delay: 1.28s;
+html.reveal-ready .snap-section.is-revealed .section-header {
+  animation-delay: 0s;
 }
 
-.presentation-card:nth-child(2) {
-  animation-delay: 1.34s;
+html.reveal-ready .snap-section.is-revealed .presentation-card:nth-child(1) {
+  animation-delay: 0.32s;
 }
 
-.presentation-card:nth-child(3) {
-  animation-delay: 1.4s;
+html.reveal-ready .snap-section.is-revealed .presentation-card:nth-child(2) {
+  animation-delay: 0.26s;
 }
 
-.presentation-card:nth-child(4) {
-  animation-delay: 1.46s;
+html.reveal-ready .snap-section.is-revealed .presentation-card:nth-child(3) {
+  animation-delay: 0.2s;
 }
 
-.presentation-card:nth-child(5) {
-  animation-delay: 1.52s;
+html.reveal-ready .snap-section.is-revealed .presentation-card:nth-child(4) {
+  animation-delay: 0.14s;
 }
 
-.social-footer {
-  animation-delay: 1.42s;
+html.reveal-ready .snap-section.is-revealed .presentation-card:nth-child(5) {
+  animation-delay: 0.08s;
+}
+
+html.reveal-ready .snap-section.is-revealed .social-footer {
+  animation-delay: 0.38s;
 }
 
 @keyframes loading-brand-cycle {
@@ -171,7 +190,7 @@ a:focus-visible {
 @keyframes content-reveal {
   from {
     opacity: 0;
-    translate: 0 1.25rem;
+    translate: clamp(2.5rem, 6vw, 6rem) 0;
   }
 
   to {

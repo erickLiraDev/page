@@ -53,9 +53,23 @@ test("keeps the event content centralized and the page in full-page scroll mode"
   assert.match(styles, /@keyframes loading-brand-cycle/);
   assert.match(styles, /@keyframes loading-screen-exit/);
   assert.match(styles, /@keyframes content-reveal/);
+  assert.match(styles, /translate:\s*clamp\(2\.5rem, 6vw, 6rem\) 0/);
+  assert.match(styles, /html\.reveal-ready/);
+  assert.match(styles, /snap-section\.is-revealed\.hero h1/);
+  assert.match(
+    styles,
+    /presentation-card:nth-child\(1\)[^}]*animation-delay:\s*0\.32s/s,
+  );
+  assert.match(
+    styles,
+    /presentation-card:nth-child\(5\)[^}]*animation-delay:\s*0\.08s/s,
+  );
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
   assert.match(page, /className="loading-screen"/);
-  assert.doesNotMatch(page, /useState|useEffect|"use client"/);
+  assert.match(page, /IntersectionObserver/);
+  assert.match(page, /classList\.add\("is-revealed"\)/);
+  assert.match(page, /classList\.remove\("is-revealed"\)/);
+  assert.doesNotMatch(page, /ScrollReveal|useState|useEffect|"use client"/);
   assert.match(
     styles,
     /grid-template-rows:\s*minmax\(0, 80%\)\s+minmax\(0, 20%\)/,
