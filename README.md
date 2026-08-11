@@ -1,6 +1,6 @@
-# Semana do Plástico
+# Semana da Embalagem
 
-Frontend estático da Semana do Plástico, evento da Falcão Bauer.
+Frontend estático da Semana da Embalagem, evento da Falcão Bauer.
 
 ## Estrutura
 
