@@ -6,6 +6,10 @@ async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
+  const staticHtml = await readFile(
+    new URL("../static/index.html", import.meta.url),
+    "utf8",
+  );
 
   return worker.fetch(
     new Request("http://localhost/", {
@@ -13,7 +17,16 @@ async function render() {
     }),
     {
       ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
+        fetch: async (request) => {
+          const pathname = new URL(request.url).pathname;
+          if (pathname === "/index.html") {
+            return new Response(staticHtml, {
+              status: 200,
+              headers: { "content-type": "text/html; charset=utf-8" },
+            });
+          }
+          return new Response("Not found", { status: 404 });
+        },
       },
     },
     {
@@ -27,8 +40,10 @@ test("server-renders the Semana do Plástico landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  assert.match(response.headers.get("cache-control") ?? "", /s-maxage=300/);
 
   const html = await response.text();
+  assert.ok(Buffer.byteLength(html) < 10 * 1024);
   assert.match(html, /<title>Semana do Plástico \| Falcão Bauer<\/title>/i);
   assert.match(html, /semana do plástico/i);
   assert.match(html, /programação/i);
@@ -38,13 +53,21 @@ test("server-renders the Semana do Plástico landing page", async () => {
   assert.match(html, /Assistir no Teams/i);
   assert.match(html, /class="loading-screen"/i);
   assert.match(html, /class="loading-brand"/i);
-  assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
+  assert.match(html, /href="\/site\.css"/);
+  assert.match(html, /src="\/scroll-reveal\.js"/);
+  assert.doesNotMatch(
+    html,
+    /codex-preview|Your site is taking shape|react-loading-skeleton|_next\/static|self\.__next_f/i,
+  );
 });
 
 test("keeps the event content centralized and the page in full-page scroll mode", async () => {
-  const [page, styles] = await Promise.all([
+  const [page, styles, appStyles, reveal, workerSource] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../public/site.css", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../public/scroll-reveal.js", import.meta.url), "utf8"),
+    readFile(new URL("../worker/index.ts", import.meta.url), "utf8"),
   ]);
 
   assert.match(styles, /scroll-snap-type:\s*y mandatory/);
@@ -65,10 +88,15 @@ test("keeps the event content centralized and the page in full-page scroll mode"
     /presentation-card:nth-child\(5\)[^}]*animation-delay:\s*0\.08s/s,
   );
   assert.match(styles, /prefers-reduced-motion:\s*reduce/);
+  assert.equal(
+    styles.trim(),
+    appStyles.replace(/^@import "tailwindcss";\s*/, "").trim(),
+  );
   assert.match(page, /className="loading-screen"/);
-  assert.match(page, /IntersectionObserver/);
-  assert.match(page, /classList\.add\("is-revealed"\)/);
-  assert.match(page, /classList\.remove\("is-revealed"\)/);
+  assert.match(reveal, /IntersectionObserver/);
+  assert.match(reveal, /classList\.add\("is-revealed"\)/);
+  assert.match(reveal, /classList\.remove\("is-revealed"\)/);
+  assert.match(workerSource, /landingPageHtml/);
   assert.doesNotMatch(page, /ScrollReveal|useState|useEffect|"use client"/);
   assert.match(
     styles,
