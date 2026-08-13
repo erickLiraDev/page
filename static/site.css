@@ -613,7 +613,6 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 0.4rem;
 }
 
 .brand-link {
@@ -629,7 +628,7 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
 
 .footer-logo {
   display: block;
-  width: clamp(8rem, 18vw, 12rem);
+  width: 50%;
   height: auto;
 }
 
@@ -874,8 +873,12 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
   .social-footer {
     min-height: 20svh;
     grid-template-columns: 1fr;
-    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
     gap: 0.75rem;
+  }
+
+  .brand-placeholder {
+    top: -0.4rem;
   }
 
   .social-list {
@@ -905,7 +908,7 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
 
   .social-footer {
     min-height: 20svh;
-    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
   }
 }
 
