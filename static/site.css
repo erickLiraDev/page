@@ -651,7 +651,7 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
 .social-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.45rem;
+  gap: 1rem;
   width: fit-content;
   margin-top: 0;
   justify-content: center;
