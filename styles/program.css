@@ -1,0 +1,202 @@
+.program-grid {
+  display: grid;
+  grid-template-rows: minmax(0, 80%) minmax(0, 20%);
+  gap: 0;
+  height: 100%;
+  padding: 0;
+}
+
+.agenda-column {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  flex-direction: column;
+  padding-top: clamp(1rem, 2.7vw, 2.5rem);
+  padding-right: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-right));
+  padding-bottom: clamp(0.85rem, 2vw, 1.75rem);
+  padding-left: max(clamp(1rem, 3.5vw, 3.75rem), env(safe-area-inset-left));
+}
+
+.section-header {
+  max-width: 44rem;
+  padding: 0 0 clamp(0.75rem, 1.5vw, 1.25rem);
+}
+
+.eyebrow {
+  margin: 0 0 0.8rem;
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.section-header h2,
+.social-content h2 {
+  max-width: 36rem;
+  margin: 0;
+  font-size: clamp(1.6rem, 2.2vw, 2.7rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.section-intro {
+  max-width: 42ch;
+  margin: 0.55rem 0 0;
+  color: var(--ink-soft);
+  font-size: clamp(0.9rem, 0.75vw, 1rem);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.presentation-list {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: clamp(0.45rem, 1vw, 0.75rem);
+}
+
+.presentation-card {
+  display: flex;
+  min-height: 0;
+  align-items: center;
+  flex-direction: column;
+  gap: clamp(0.4rem, 0.9vw, 0.75rem);
+  padding: clamp(0.65rem, 1.3vw, 1.15rem);
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: clamp(0.75rem, 1.2vw, 1rem);
+  background: var(--paper);
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.presentation-card:hover {
+  border-color: var(--line-strong);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.presentation-day {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 0.15rem;
+  text-align: left;
+}
+
+.presentation-day span {
+  color: var(--blue);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+}
+
+.presentation-day strong {
+  color: var(--ink);
+  font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.speaker-photo {
+  position: relative;
+  display: grid;
+  width: clamp(8rem, 12vw, 12rem);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 0.7rem;
+  background: var(--canvas);
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.speaker-photo::before {
+  position: absolute;
+  width: 1.2rem;
+  height: 0.3rem;
+  margin-top: 2rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  content: "";
+}
+
+.presentation-copy {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+}
+
+.presentation-slot,
+.presentation-topic {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.presentation-slot {
+  color: var(--blue);
+  font-weight: 800;
+}
+
+.presentation-copy h3 {
+  overflow: hidden;
+  margin: 0.2rem 0 0.22rem;
+  color: var(--ink);
+  font-size: clamp(0.86rem, 1.1vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.team-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  align-self: center;
+  width: min(100%, clamp(12rem, 16vw, 15rem));
+  min-width: 0;
+  min-height: 3.5rem;
+  margin-top: auto;
+  padding: 1rem 1.45rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.2;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.team-button:not(:disabled):hover {
+  border-color: var(--blue);
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.team-button:disabled {
+  border-style: dashed;
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: not-allowed;
+  opacity: 1;
+}

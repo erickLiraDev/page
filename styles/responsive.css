@@ -1,0 +1,226 @@
+@media (max-width: 900px) {
+  .site-shell {
+    scroll-snap-type: y proximity;
+  }
+
+  .snap-section {
+    height: auto;
+    min-height: 100svh;
+    scroll-snap-stop: normal;
+  }
+
+  .program-section {
+    overflow: visible;
+  }
+
+  .program-grid {
+    height: auto;
+    min-height: 100%;
+    grid-template-rows: auto auto;
+  }
+
+  .agenda-column {
+    min-height: 0;
+    padding: 1.25rem max(1.25rem, env(safe-area-inset-right)) 1.25rem max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .presentation-list {
+    flex: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(12rem, auto);
+  }
+
+  .social-footer {
+    min-height: 20svh;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 1rem;
+    padding: 0.8rem max(1.25rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+  }
+
+  .social-content {
+    align-self: center;
+  }
+
+  .contact-block {
+    padding: 0.4rem 0 0;
+    border-top: 1px solid var(--footer-line);
+    border-left: 0;
+  }
+
+  html.reveal-ready .program-section .section-header,
+  html.reveal-ready .program-section .presentation-card,
+  html.reveal-ready .program-section .social-footer {
+    opacity: 1;
+    translate: none;
+    animation: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero-brand {
+    top: max(1.25rem, env(safe-area-inset-top));
+    left: max(1rem, env(safe-area-inset-left));
+    width: min(54vw, 13rem);
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(3.25rem, 16vw, 5.5rem);
+    line-height: 0.88;
+  }
+
+  .hero-ring {
+    width: 110vw;
+  }
+
+  .program-grid {
+    gap: 0;
+    padding: 0;
+  }
+
+  .agenda-column {
+    padding: 1rem max(1rem, env(safe-area-inset-right)) 1rem max(1rem, env(safe-area-inset-left));
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.55rem, 8vw, 2.4rem);
+  }
+
+  .section-intro {
+    margin-top: 0.7rem;
+    font-size: 0.9rem;
+  }
+
+  .presentation-list {
+    gap: 0.45rem;
+  }
+
+  .presentation-card {
+    gap: 0.55rem;
+    padding: 0.6rem;
+    border-radius: 0.8rem;
+  }
+
+  .presentation-card .speaker-photo {
+    width: 8rem;
+  }
+
+  .presentation-copy h3 {
+    font-size: 0.86rem;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+  }
+
+  .presentation-topic {
+    font-size: 0.7rem;
+  }
+
+  .team-button {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.75rem;
+    padding: 0.7rem 0.75rem;
+    font-size: 0.78rem;
+  }
+
+  .team-button-label {
+    display: inline;
+  }
+
+  .social-footer {
+    min-height: 20svh;
+    grid-template-columns: 1fr;
+    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+    gap: 0.75rem;
+  }
+
+  .social-list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 0;
+  }
+
+  .social-content {
+    padding: 0;
+  }
+
+  .social-content h2 {
+    font-size: clamp(1.7rem, 10vw, 3rem);
+  }
+}
+
+@media (max-width: 399px) {
+  .presentation-list {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    grid-auto-rows: minmax(8rem, auto);
+  }
+
+  .presentation-card {
+    min-height: 7rem;
+  }
+
+  .social-footer {
+    min-height: 20svh;
+    padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(0.8rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-brand {
+    width: min(28vw, 11rem);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 10vw, 5rem);
+  }
+
+  .hero-meta,
+  .hero-cta {
+    margin-top: 0.75rem;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .hero-cta:active {
+    transform: translateY(1px);
+  }
+
+  .social-link:active {
+    transform: scale(0.97);
+  }
+
+  .contact-phone:active {
+    color: var(--accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .loading-screen {
+    display: none;
+  }
+
+  .loading-brand,
+  .reveal-target {
+    opacity: 1;
+    translate: none;
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

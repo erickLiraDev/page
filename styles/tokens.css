@@ -1,0 +1,23 @@
+:root {
+  --ink: #082a52;
+  --ink-soft: #49657e;
+  --blue: #1255b4;
+  --blue-bright: #2f72df;
+  --canvas: #f3f7fb;
+  --paper: #ffffff;
+  --line: #dbe5ee;
+  --line-strong: #c2d2e1;
+  --accent: #d9ef83;
+  --muted: #8094a7;
+  --touch-target: 44px;
+  --radius-pill: 999px;
+  --shadow-card-hover: 0 0.75rem 2rem rgba(8, 42, 82, 0.08);
+  --footer-background: var(--ink);
+  --footer-button: var(--paper);
+  --footer-button-line: rgba(8, 42, 82, 0.22);
+  --footer-button-hover: var(--accent);
+  --footer-line: rgba(255, 255, 255, 0.2);
+  --footer-orbit: rgba(255, 255, 255, 0.15);
+  --footer-orbit-soft: rgba(255, 255, 255, 0.11);
+  --footer-muted: rgba(255, 255, 255, 0.56);
+}
