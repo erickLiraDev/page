@@ -560,7 +560,7 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
 .social-footer {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(420px, 0.8fr) minmax(0, 1.2fr);
   align-items: center;
   gap: clamp(1rem, 3vw, 3rem);
   min-width: 0;
@@ -611,24 +611,27 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
 
 .brand-placeholder {
   display: flex;
-  align-items: flex-start;
-  flex-direction: column;
+  align-items: stretch;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .brand-link {
   display: flex;
+  flex: 0 1 clamp(8rem, 40%, 11rem);
   align-self: flex-start;
   min-height: var(--touch-target);
   align-items: center;
-  justify-content: flex-start;
-  width: min(100%, 22rem);
+  justify-content: center;
+  width: auto;
   color: var(--paper);
   text-decoration: none;
 }
 
 .footer-logo {
   display: block;
-  width: 50%;
+  width: 100%;
+  max-width: 11rem;
   height: auto;
 }
 
@@ -704,17 +707,30 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
 
 .contact-block {
   display: grid;
-  gap: 0.25rem;
-  width: min(100%, 22rem);
-  padding: 0.4rem 0 0;
+  grid-template-rows: auto 1fr auto;
+  align-self: stretch;
+  flex: 1 1 0;
+  gap: 0;
+  min-width: 0;
+  width: auto;
+  padding: 0;
+  border: 0;
+}
+
+.contact-block::before {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
   border-top: 1px solid var(--footer-line);
-  border-left: 0;
+  content: "";
 }
 
 .contact-phone {
+  position: relative;
   display: inline-flex;
-  min-height: var(--touch-target);
-  align-items: center;
+  align-self: start;
+  align-items: flex-start;
   width: fit-content;
   color: var(--paper);
   font-size: 0.78rem;
@@ -723,12 +739,25 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
   text-decoration: none;
 }
 
+.contact-phone::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--touch-target));
+  height: var(--touch-target);
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
 .contact-phone:hover {
   color: var(--accent);
 }
 
 .contact-block address {
+  position: relative;
+  align-self: end;
   max-width: 22rem;
+  margin: 0;
   color: var(--footer-muted);
   font-size: 0.68rem;
   font-style: normal;
@@ -782,9 +811,8 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
   }
 
   .contact-block {
-    padding: 0.4rem 0 0;
-    border-top: 1px solid var(--footer-line);
-    border-left: 0;
+    padding: 0;
+    border: 0;
   }
 
   html.reveal-ready .program-section .section-header,
@@ -881,6 +909,11 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
     top: -0.4rem;
   }
 
+  .contact-block address {
+    font-size: 0.6rem;
+    line-height: 1.15;
+  }
+
   .social-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: 0;
@@ -909,6 +942,25 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
   .social-footer {
     min-height: 20svh;
     padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+}
+
+@media (max-width: 340px) {
+  .brand-placeholder {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .brand-link {
+    flex: 0 0 auto;
+    width: 8rem;
+  }
+
+  .contact-block {
+    align-self: auto;
+    min-height: 2.85rem;
+    width: 100%;
   }
 }
 

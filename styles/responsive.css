@@ -43,9 +43,8 @@
   }
 
   .contact-block {
-    padding: 0.4rem 0 0;
-    border-top: 1px solid var(--footer-line);
-    border-left: 0;
+    padding: 0;
+    border: 0;
   }
 
   html.reveal-ready .program-section .section-header,
@@ -142,6 +141,11 @@
     top: -0.4rem;
   }
 
+  .contact-block address {
+    font-size: 0.6rem;
+    line-height: 1.15;
+  }
+
   .social-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     margin-top: 0;
@@ -170,6 +174,25 @@
   .social-footer {
     min-height: 20svh;
     padding: 0.8rem max(1rem, env(safe-area-inset-right)) max(1.5rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  }
+}
+
+@media (max-width: 340px) {
+  .brand-placeholder {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .brand-link {
+    flex: 0 0 auto;
+    width: 8rem;
+  }
+
+  .contact-block {
+    align-self: auto;
+    min-height: 2.85rem;
+    width: 100%;
   }
 }
 
