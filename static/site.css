@@ -627,9 +627,9 @@ html.reveal-ready .snap-section.is-revealed .reveal-target {
   text-decoration: none;
 }
 
-.footer-favicon {
+.footer-logo {
   display: block;
-  width: clamp(2.5rem, 5vw, 4rem);
+  width: clamp(8rem, 18vw, 12rem);
   height: auto;
 }
 
